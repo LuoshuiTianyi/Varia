@@ -116,10 +116,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-set -o vi
 
+set -o vi
 alias q="exit"
 alias cls="clear"
 alias down="/home/luoshuitianyi/Apps/Baidu-PCS/BaiduPCS-Go"
-alias Vim="vim ~/Code"
 alias Git="git add .&&git commit -m 'Changed'&&git push"
