@@ -120,6 +120,6 @@ fi
 set -o vi
 alias q="exit"
 alias cls="clear"
-alias down="~/Thyu/Apps/Baidu-PCS/BaiduPCS-Go"
+alias down="~/Apps/Baidu-PCS/BaiduPCS-Go"
 alias Git="git add .&&git commit -m 'Changed'&&git push"
 alias TClear="rm -rf ~/.local/share/Trash/files/*"
