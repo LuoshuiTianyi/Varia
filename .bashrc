@@ -57,11 +57,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Prompt
-if [ -n "$SSH_CONNECTION" ]; then
-export PS1="\[$(tput setaf 1)\]┌─╼ \[$(tput setaf 7)\][\w]\n\[$(tput setaf 1)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 1)\]└────╼ \[$(tput setaf 7)\][ssh]\"; else echo \"\[$(tput setaf 1)\]└╼ \[$(tput setaf 7)\][ssh]\"; fi) \[$(tput setaf 7)\]"
-else
-export PS1="\[$(tput setaf 6)\]┌─╼ \[$(tput setaf 7)\][\w]\n\[$(tput setaf 6)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 6)\]└────╼\"; else echo \"\[$(tput setaf 6)\]└╼\"; fi) \[$(tput setaf 7)\]"
-fi
+export PS1="\[$(tput setaf 6)\]┌─╼ \[$(tput setaf 7)\][\[\033[01;36m\]\u\[\033[00m\]:\[\033[01;04;37m\]\w\[\033[00m\]]\n\[$(tput setaf 6)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 6)\]└────╼\"; else echo \"\[$(tput setaf 6)\]└╼\"; fi) \[$(tput setaf 7)\]"
 
 trap 'echo -ne "\e[0m"' DEBUG
 
@@ -124,17 +120,10 @@ alias cls="clear"
 alias down="~/Apps/Baidu-PCS/BaiduPCS-Go"
 alias Git="git add .&&git commit -m 'Changed'&&git push"
 alias TClear="rm -rf ~/.local/share/Trash/files/*"
-
-function mkcd {
-  if [ ! -n "$1" ]; then
-    echo "Entrez un nom pour ce dossier"
-  elif [ -d $1 ]; then
-    echo "\`$1' existed"
-  else
-    mkdir $1 && cd $1
-  fi
+function mkcd() { mkdir $1 && cd $1
 }
-
+function cd() { builtin cd "$*" && ls 
+}
 b() {
     str=""
     count=0
@@ -146,7 +135,10 @@ b() {
     cd $str
 }
 
-function cd()
-{
- builtin cd "$*" && ls
-}
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
+# autojump
+[[ -s /home/luoshuitianyi/.autojump/etc/profile.d/autojump.sh ]] && source /home/luoshuitianyi/.autojump/etc/profile.d/autojump.sh
