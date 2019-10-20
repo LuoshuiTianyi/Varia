@@ -120,6 +120,7 @@ alias cls="clear"
 alias down="~/Apps/Baidu-PCS/BaiduPCS-Go"
 alias Git="git add .&&git commit -m 'Changed'&&git push"
 alias TClear="rm -rf ~/.local/share/Trash/files/*"
+alias genda="cd ~/Apps/tractor/tlj && /usr/lib/jvm/java-8-openjdk-amd64/bin/java -jar ./genda.jar"
 function mkcd() { mkdir $1 && cd $1
 }
 function cd() { builtin cd "$*" && ls 
